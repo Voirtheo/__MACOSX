@@ -1,0 +1,109 @@
+
+<template>
+    <view>
+      <view class="status">
+        <icon type="success" size="56" color="red"/>
+        <view>订餐成功</view>
+      </view>
+        <view class="content">
+          <view class="content-item">
+            <text class="content-item-name">付款金额</text>
+            <text class="content-item-detail color-red"><text class="iconfont icon-renminbi2"></text>{{sumPrice}}</text>
+          </view>
+          <view class="hr"></view>
+           <view class="content-item">
+            <text class="content-item-name">收货人</text>
+            <text class="content-item-detail">{{message.name}}</text>
+          </view>
+           <view class="content-item">
+            <text class="content-item-name">送货地址</text>
+            <text class="content-item-detail">{{message.address}}</text>
+          </view>
+           <view class="content-item">
+            <text class="content-item-name">预计送餐时间</text>
+            <text class="content-item-detail">{{time}}</text>
+          </view>
+        </view>
+        <button @tap="back">确定</button>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class address extends wepy.page {
+    mixins = []
+    config = {
+      navigationBarTitleText: '订单成功'
+    }
+    components = {
+
+    }
+
+    mixins = []
+
+    data = {
+        message:{},
+        time:'',
+        sumPrice:''
+    }
+
+    computed = {
+
+    }
+
+    methods = {
+
+    }
+
+    events = {
+
+    }
+
+    onLoad(options) {
+      this.message = JSON.parse(options.message);
+      this.time = JSON.parse(options.choosedTime);
+      this.sumPrice = JSON.parse(options.sumPrice);
+    }
+
+    back(){
+      wx.navigateTo({
+          url: "/pages/order"
+      })
+    }
+  }
+</script>
+<style lang="less" scoped>
+.status{
+  text-align:center;
+  margin:30px 0;
+}
+.status view{
+  margin-top:10px;
+}
+.content-item {
+  padding:0 15px;
+}
+.hr{
+  border-bottom:1px solid #ccc;
+  margin:0 15px;
+  margin-bottom:20px;
+}
+.content-item .content-item-name{
+  color:#999;
+}
+.content-item:first-child{
+  margin-bottom:20px;
+}
+
+.content-item .content-item-detail{
+  float:right;
+}
+button{
+  background-color:#ff8eb3;
+  color:#fff;
+  width:80%;
+  margin-top:50px;
+}
+</style>
+

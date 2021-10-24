@@ -1,0 +1,214 @@
+
+<template>
+    <view class="submit">
+      <view class="submit-content submit-address">
+        <view @tap="chooseAddress" class="address">
+          <view>
+            <view>
+              <text class="iconfont icon-weizhi"></text>
+              {{message.address}}
+            </view>
+            <view class="submit-user color-gray">{{message.name}}  {{message.sex == 'female'?'小姐姐':'小哥哥'}}  {{message.tel}}</view>
+          </view>
+          <view class="iconfont icon-gengduo"></view>
+        </view>
+        <view class="time" @tap="chooseTime">
+          <view>
+            <text class="iconfont icon-shijianzhongbiao2"></text>
+            {{choosedTime}}
+            <text wx:if="{{choosedTime == '立即送出'}}" class="color-green size-s">--大约1小时后到</text>
+            <text wx:else>送出</text>
+          </view>
+          <view class="iconfont icon-gengduo"></view>
+        </view>
+      </view>
+
+      <!-- 订单信息 -->
+      <view class="submit-content submit-order">
+        <view class="order-name">
+          <view class="size-l">{{hospital.name}}</view>
+        </view>
+        <view class="order-foodList">
+          <view  class="order-foodList-item color-gray size-s" wx:for="{{foodList}}" wx:key="index">
+            <text>{{item.name}}</text>
+            <view>
+               {{item.sum}} x     <text class="iconfont icon-renminbi2"></text>{{item.price}}
+            </view>
+          </view>
+        </view>
+        <view class="order-price">小计：<text class="color-red"><text class="iconfont icon-renminbi2"></text>{{sumPrice}}</text></view>
+      </view>
+
+
+      <button @tap="submit()">确定</button>
+      <Time current="currentTime" :flag.sync="flag" :currentTime.sync="choosedTime"></Time>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import time from '../components/time'
+
+
+  export default class submit extends wepy.page {
+    mixins = []
+    config = {
+      navigationBarTitleText: '提交订单'
+    }
+    components = {
+      Time:time
+    }
+
+    mixins = []
+
+    data = {
+      hospital:{
+        name:'一食堂1'
+      },
+      message:{
+        address:'西安软件园',
+        name:'兰正龙',
+        sex:'male',
+        tel:'0000000000',
+        time:'立即送出'
+      },
+      foodList:[],
+      sumPrice:'',
+      choosedTime:'立即送出',
+      flag:false
+    }
+
+    computed = {
+    }
+
+    methods = {
+
+    }
+
+    events = {
+
+    }
+
+    onLoad(options) {
+        this.message = JSON.parse(options.message);
+        this.foodList = JSON.parse(options.foodList);
+        this.sumPrice = JSON.parse(options.sumPrice);
+        this.choosedTime = JSON.parse(options.choosedTime)
+    }
+
+    onReady() {
+      this.initPage()
+    }
+
+    initPage(){
+      this.getHosipital();
+    }
+    chooseTime(){
+      this.flag = true ;
+    }
+    chooseAddress(){
+      var message = JSON.stringify(this.message);
+      var choosedTime = JSON.stringify(this.choosedTime) ;
+      var foodList = JSON.stringify(this.foodList) ;
+      var sumPrice = JSON.stringify(this.sumPrice) ;
+      wx.navigateTo({
+          url: "/pages/address?message=" + message + "&choosedTime=" + choosedTime +"&sumPrice=" + sumPrice + "&foodList=" + foodList
+      })
+    }
+    submit(){
+      var message = JSON.stringify(this.message);
+      var choosedTime = JSON.stringify(this.choosedTime) ;
+      var foodList = JSON.stringify(this.foodList) ;
+      var sumPrice = JSON.stringify(this.sumPrice) ;
+
+      wx.navigateTo({
+          url: "/pages/status?message=" + message + "&choosedTime=" + choosedTime +"&sumPrice=" + sumPrice + "&foodList=" + foodList
+      })
+    }
+    async getHosipital(){
+      var url = "http://yapi.demo.qunar.com/mock/16780/get_info"
+      wepy.request({url:url,method: 'POST'}).then((res) => {
+        this.hospital.name = res.data[0].resname
+        this.$apply();
+      })
+    }
+  }
+</script>
+<style lang="less" scoped>
+view{
+  font-size:16px;
+}
+.submit-content{
+  background-color:#fff;
+  margin:10px 15px;
+}
+button{
+  background-color:#ff8eb3;
+  color:#fff;
+  width:80%;
+  margin-top:50px;
+}
+.address,.time{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 10px;
+}
+.address,.order-name{
+  border-bottom:1px solid #ccc;
+}
+.order-foodList{
+  border-bottom:1px dashed #ccc;
+}
+.submit-user{
+  padding-left:18px;
+}
+
+
+
+.order-name{
+  padding:10px
+}
+.order-name view{
+  border-left:4px solid #ff8eb3;
+  padding-left:10px;
+}
+.order-foodList .order-foodList-item{
+  margin:10px;
+}
+.order-foodList .order-foodList-item view{
+  float:right;
+}
+.order-foodList{
+
+}
+
+.order-price{
+  padding:10px;
+  text-align:right;
+  position:relative;
+}
+
+.order-price::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #efeff4;
+            top: -8px;
+            left: -8px;
+        }
+
+  .order-price::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #efeff4;
+      top: -8px;
+      right: -8px;
+  }
+</style>
+

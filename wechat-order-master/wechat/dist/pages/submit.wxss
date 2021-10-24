@@ -1,0 +1,69 @@
+@import "./../components/time.wxss";
+view._98dfdb1 {
+  font-size: 16px;
+}
+.submit-content._98dfdb1 {
+  background-color: #fff;
+  margin: 10px 15px;
+}
+button._98dfdb1 {
+  background-color: #ff8eb3;
+  color: #fff;
+  width: 80%;
+  margin-top: 50px;
+}
+.address._98dfdb1,
+.time._98dfdb1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+.address._98dfdb1,
+.order-name._98dfdb1 {
+  border-bottom: 1px solid #ccc;
+}
+.order-foodList._98dfdb1 {
+  border-bottom: 1px dashed #ccc;
+}
+.submit-user._98dfdb1 {
+  padding-left: 18px;
+}
+.order-name._98dfdb1 {
+  padding: 10px;
+}
+.order-name view._98dfdb1 {
+  border-left: 4px solid #ff8eb3;
+  padding-left: 10px;
+}
+.order-foodList .order-foodList-item._98dfdb1 {
+  margin: 10px;
+}
+.order-foodList .order-foodList-item view._98dfdb1 {
+  float: right;
+}
+.order-price._98dfdb1 {
+  padding: 10px;
+  text-align: right;
+  position: relative;
+}
+.order-price._98dfdb1::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #efeff4;
+  top: -8px;
+  left: -8px;
+}
+.order-price._98dfdb1::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #efeff4;
+  top: -8px;
+  right: -8px;
+}

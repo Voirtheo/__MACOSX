@@ -1,0 +1,25 @@
+.sendTime._ce986dc {
+  position: fixed ;
+  bottom: 0;
+  height: 200px;
+  width: 100%;
+  background-color: #fff;
+}
+.iconfont._ce986dc {
+  float: right;
+  margin-right: 10px;
+}
+.time-item._ce986dc {
+  margin: 10px;
+}
+.checked._ce986dc {
+  color: green;
+}
+.submit-btn._ce986dc {
+  display: block;
+  height: 45px;
+  border-top: 1px solid #ccc;
+  line-height: 45px;
+  width: 100%;
+  text-align: center;
+}

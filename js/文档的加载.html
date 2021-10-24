@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    //onload事件会在整个页面加载完成之后执行
+        window.onload = function(){
+            var btn = document.getElementById("btn");
+            btn.onclick = function(){
+                alert("别点我！！");
+        };
+    };
+    </script>
+</head>
+<body>
+    <!-- 浏览器在加载页面时是按顺序来的，所以如果将script写到页面的上面，在代码执行时，页面还没有加载 -->
+    <button id="btn">点我一下</button>
+</body>
+</html>

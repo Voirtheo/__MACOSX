@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #outer{
+            /* background-color: rgb(113, 209, 212); */
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            //点击按钮切换图片
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            //创建一个数组用来保存几个路径
+            var imgArr = ["../img/logo1.png" , "../img/logo2.png" , "../img/logo3.png" , "../img/logo4.png"];
+            var index = 0;
+            var img = document.getElementsByTagName("img")[0];
+            var info = document.getElementById("info");
+            info.innerHTML = "共"+imgArr.length+"张图片，当前位于第"+(index+1)+"张";
+            prev.onclick = function(){
+                index--;
+                if(index<0){
+                    index = imgArr.length-1;
+                }
+                img.src = imgArr[index];
+                info.innerHTML = "共"+imgArr.length+"张图片，当前位于第"+(index+1)+"张"
+            }
+            next.onclick = function(){
+                index++;
+                if(index>imgArr.length-1){
+                    index = 0;
+                }
+                img.src = imgArr[index];
+                info.innerHTML = "共"+imgArr.length+"张图片，当前位于第"+(index+1)+"张"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <p id="info"></p>
+        <img id="pic" src="../img/logo1.png" alt="logo1"><br>
+        <button id="prev">上一张</button>
+        <button id="next">下一张</button>
+    </div>
+</body>
+</html>

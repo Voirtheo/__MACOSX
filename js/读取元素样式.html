@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: cadetblue;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = function(){
+                //根据样式名来读取样式，如果样式没有设置，则会得到真实的值而不是默认值
+                var width = getComputedStyle(box1,null).width;
+                alert(width);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1">点我一下</button>
+    <br>
+    <div id="box1"></div>
+</body>
+</html>

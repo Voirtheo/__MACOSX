@@ -1,0 +1,194 @@
+/* 设置背景 */
+body{
+    background: url(../img/polo360.png) repeat-x;
+}
+.clearfix:before,
+.clearfix:after{
+    content:"";
+    display: table;
+    clear: both;
+}
+/* 固定元素的宽度和居中 */
+.w{
+    width: 940px;
+    margin: 0px auto;
+}
+.header{
+    /* background-color: aquamarine; */
+    padding-top: 37px;
+    padding-bottom: 46px;
+}
+.box1:after{
+    content:"";
+    display: block;
+    clear: both;
+}
+.nav{
+    float: right;
+    margin-top: 22px;
+    margin-right: 26px;
+}
+.logo{
+    float: left;
+    /* margin-left: 15px; */
+    padding-left: 15px;
+}
+.nav li{
+    float: left;
+    border-left: 1px #d6d6d6 dotted;
+    padding: 0px 10px;
+}
+.nav a{
+    text-decoration: none;
+    font: bold 14px Georgia;
+    color: #747474;
+}
+.nav a:hover{
+    color:#9b9595;
+    text-decoration: underline;
+}
+.nav p{
+    color: #bcbcbc;
+    font: 10px Georgia;
+}
+.banner{
+    position: relative;
+}
+.banner img{
+    box-shadow:1px 2px 5px 0 rgba(0,0,0,.5);
+}
+.pointer{
+    position: absolute;
+    top: 314px;
+    left: 15px;
+}
+.pointer a{
+    float: left;
+    width: 17px;
+    height: 17px;
+    background: url(../img/pointer.png) no-repeat;
+    margin-left: 4px; 
+}
+.pointer a:hover{
+    background: url(../img/pointer2.png);
+}
+.break{
+    margin: 0 auto;
+    /* background-color: chartreuse; */
+    padding: 17px;
+}
+.break .lorem{
+    font: bolder 24px Georgia;
+    color: black;
+    text-align: center;
+    padding-bottom: 20px;
+    background: url(../img/break.png) no-repeat bottom center;
+}
+.bg{
+    float: left;
+    width: 300px;
+    /* background-color: aquamarine; */
+    margin-top: 37px;
+}
+.content .cs{
+    margin: 37px 20px;
+}
+.content h1{
+    color: #11719e;
+    font: 24px Georgia;
+}
+.content p{
+        color:#bcbcbc;
+        font: 10px Georgia;
+        margin-bottom: 12px;
+}
+.content h2{
+    height: 95px;
+    margin-top: 10px;
+    color: #3e3e3e;
+    /* color: red; */
+    font: 13px Helvetica;
+}
+.content .lm{
+    display: block;
+    width: 163px;
+    height: 40px;
+    color: #11719e;
+    font: 12px/40px Helvetica;
+    background: url(../img/butten.png) no-repeat;
+    text-indent: 1em;
+}
+.content2 .ct{
+    margin: 37px 20px;
+}
+.content2 h1{
+        font: 18px Georgia;
+        padding-bottom: 10px;
+        border-bottom: 1px #d6d6d6 dotted;
+        margin-bottom: 14px;
+}
+.content2 p{
+    font: 12px Helvetica;
+    padding-bottom: 12px;
+}
+.content2 .sc img{
+    float: left;
+    padding-bottom: 38px;
+}
+.content2 .sc h2{
+    font: 18px Gill Sans MT;
+    padding-bottom: 10px;
+    border-bottom: 1px #d6d6d6 dotted;
+}
+.content2 .sc h3{
+    font: 12px Helvetica;
+    padding: 14px 0;
+}
+.content2 .kuang{
+    width: 300px;
+    height: 31px;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    text-indent: 13px;
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: #d4d4d4;
+    /* placeholder字体大小  */
+    font: 10px Verdana;
+}
+.content2 .sub{
+    display: block;
+    width: 163px;
+    height: 30px;
+    color: white;
+    font: 13px/30px Georgia;
+    background: url(../img/underbutten.png) no-repeat;
+    text-indent: 1em;
+    margin: 11px 137px 24px 0px;
+}
+.content2 .dier{
+    display: block;
+    margin: 17px auto;
+}
+.content2 .disan{
+    display: block;
+    width: 300px;
+    height: 160px;
+    border: 1px solid #cfcfcf;
+    border-radius: 5px;
+    text-indent: 13px;
+}
+.content2 .nu .img1, .img2, .img3{
+    float: left;
+    margin-right: 5px;
+}
+.content2 .nu p{
+    font: 12px Helvetica;
+    background-color: white;
+}
+.content2 .jiange{
+    margin: 12px auto;
+}
+
+ 

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font: 12px/1 宋体;
+        }
+        .outer{
+            width: 300px;
+            margin: 10px auto;
+        }
+        .title{
+            border-top:2px solid #008e88;
+            height: 36px;
+            background-color:#f4f6f5;
+            line-height: 36px;
+            padding: 0px 22px 0px 16px;
+            /* 不设置宽度不会导致溢出 */
+        }
+        .title h3{
+            font: 14px/36px 微软雅黑;
+        }
+        .title a{
+            float: right;
+            color: red;
+        }
+        .content{
+            border: 1px solid #e7e8e6;
+            padding: 0px 28px 0px 20px;
+        }
+        .content h3{
+            margin-top:14px ;
+            margin-bottom: 15px;
+        }
+        .content a{
+            text-decoration: none;
+            color: black;
+            font-size: 12px;
+        }
+        .content a:hover{
+            color: red;
+            text-decoration: underline;
+        }
+        .content ul{
+            list-style-type: none;
+            border-bottom: 1px dashed #deddd9;
+        }
+        .content .time{
+            color: red;
+            font-weight: bold;
+        }
+        .right{
+            float: right;
+        }
+        .content li{
+            margin-bottom: 14px;
+        }
+        .content .no-border{
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="title">
+            <a href="#">16年面授开班计划</a>
+            <h3>近期开班</h3>
+        </div>
+        <div class="content">
+            <h3><a href="https://www.baidu.com">JavaEE+云计算-全程就业班</a></h3>
+            <ul>
+                <li>
+                    <a href="#">开班时间：<span class="time">2016-04-27</span></a>
+                    <a class="right" href="#"><span class="time">预约报名</span></a>
+                </li>
+                <li>
+                    <a href="#">开班时间：<span class="time">2016-04-07</span></a>
+                    <a class="right" href="#"><span class="time">无座，名额爆满</span></a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2016-04-27</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2016-03-15</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2015-12-26</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+            </ul>
+
+            <h3><a href="#">人工智能全程就业班</a></h3>
+            <ul>
+                <li>
+                    <a href="#">开班时间：<span class="time">2016-04-27</span></a>
+                    <a class="right" href="#"><span class="time">预约报名</span></a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2016-04-27</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2016-03-15</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2015-12-26</a>
+                    <a class="right" href="#">开班盛况</a>
+                </li>
+            </ul>
+            <h3><a href="#">前端+HTML5全程就业班</a></h3>
+            <ul class="no-border">
+                <li>
+                    <a href="#">开班时间：<span class="time">2016-04-27</span></a>
+                    <a class="right" href="#"><span class="time">预约报名</span></a>
+                </li>
+                <li>
+                    <a href="#">开班时间：2016-04-07</a>
+                    <a class="right" href="#">预约报名</a>
+                </li>
+        </div>
+    </div>
+</body>
+</html>

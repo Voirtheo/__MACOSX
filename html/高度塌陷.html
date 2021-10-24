@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            border: 10px royalblue solid;
+            /* display: inline-block; */
+            overflow: hidden;
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+            float: left;
+        }
+        .box3{
+            width: 100px;
+            height: 100px;
+            background-color: salmon;
+        }
+        /* .box1:after{
+            content:"";
+            display: block;
+            clear: both;
+        } */
+        /* 解决高度塌陷的最终方案，可以直接在塌陷的父元素最后，添加一个空白的div ,然后css设置
+        .clearfix:after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+        ,由于这个div并没有浮动，所有他是可以撑开父元素的高度的 clear:both; */
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+        <!-- 原本子元素会自动撑开父元素的边框，但设置了
+        float之后，子元素脱离文档流，子元素无法撑起
+        父元素高度，导致父元素高度塌陷，塌陷之后，父元素下
+        的所有元素都会向上移动，布局混乱 -->
+        <!-- 1. 避免出现高度问题可以先将父元素高度写死，但这样高度
+        将无法随着子元素的变化而变化
+        2. 可以开启BFC，开启之后：a)父元素的垂直外边距不会和子元素
+        重叠，b)开启BFC的元素不会被浮动元素覆盖c)开启BFC的父元素可以
+        包含浮动的子元素 -->
+        <!-- 开启BFC方式：
+        1.设置元素浮动
+        2.设置元素绝对定位
+        3.设置元素为inline-block
+        4.将元素的overflow设置为一个非visible的值  -->
+    </div>
+    <div class="box3"></div>
+</body>
+</html>

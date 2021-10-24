@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            overflow: auto;
+            /* scroll不太聪明，auto聪明点，哪里需要就在哪里添加滚动条 */
+        }
+        .box1{
+            width: 100px;
+            height: 500px;
+            background-color: hotpink;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">子元素默认存在于父元素的内容区中，但若子元素大小超过父元素区域，移除部分会在父元素以外的区域显示
+            通过overflow可以设置父元素如何处理溢出内容</div>
+    </div>
+</body>
+</html>

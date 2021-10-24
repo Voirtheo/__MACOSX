@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function myClick(idstr , fun){
+            var btn = document.getElementById(idstr);
+            btn.onclick = fun;
+        } 
+        window.onload = function(){
+            //document的all返回html页面中的所有标签数
+            var all = document.all;
+            //根据元素的class属性值查询一组元素节点对象
+            var box1 = document.getElementsByClassName("box1");
+            console.log(box1.length)
+            //找到box1里面的div,document.querySelector()可以根据一个css选择器来查询一个元素节点对象
+            //但该方法只会返回唯一的元素，如果满足条件的有多个则只会返回第一个
+            box2 = document.querySelector(".box1 div");
+            console.log(box2);
+            //document.querySelectorAll()和上用法类似，但这个会把符合条件的返回到一个数组内
+            myClick("btn1" , function(){
+                //查找id为liulian的节点
+                var liulian = document.getElementById("liulian");
+                console.log(liulian.innerHTML);
+            });
+            myClick("btn2" , function(){
+                //查找所有li节点
+                //返回的是一个类数组对象，所有查询到的元素都会封装到对象中
+                var lis = document.getElementsByTagName("li");
+                // console.log(lis)
+                for(var i=0 ; i<lis.length ; i++){
+                    alert(lis[i].innerHTML);
+                }
+            });
+            myClick("btn3" , function(){
+                var gender = document.getElementsByName("gender");
+                for(var i=0; i<gender.length; i++ )
+                //对于自结束标签，innerhtml无法获取其内容
+                //如果需要读取元素节点的属性，直接使用元素.属性名，但是class不能读取，要是用className
+                    console.log(gender[i].value);
+            });
+            myClick("btn4" , function(){
+                var city = document.getElementById("city");
+                var li = city.getElementsByTagName("li");
+                for(var i=0 ; i<li.length;i++ ){
+                    console.log(li[i].innerHTML);
+                }
+            });
+            myClick("btn5" , function(){
+                var city = document.getElementById("city");
+                var li = city.childNodes;
+                //childNodes用于获取包括文本节点在内的所有节点，标签间的空白也算一个节点
+                console.log(li.length);
+                //children属性可以获取当前元素的所有子元素
+                var cns2 = city.children;
+                console.log(cns2.length);
+            });
+            myClick("btn6" , function(){
+                var phone = document.getElementById("phone");
+                //firstchild算空格标签，lastchild同理，只是或许最后一个元素
+                var fir = phone.firstChild;
+                console.log(fir);
+            });
+            myClick("btn7" , function(){
+                var wo = document.getElementById("wo");
+                var par = wo.parentNode;
+                console.log(par.innerText);
+            });
+            myClick("btn8" , function(){
+                var city = document.getElementById("city");
+                var xiongdi = city.previousSibling;
+                console.log(xiongdi);
+            });
+            //nextSibling下一个兄弟节点
+            //读取#username的value属性值
+            myClick("btn9" , function(){
+                var um = document.getElementById("username");
+                console.log(um.value);
+            });
+            myClick("btn10" , function(){
+                var um = document.getElementById("username");
+                um.value = "是他是他就是他"
+                console.log(um.value);
+            })
+        };
+    </script>
+</head>
+</body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+    <button id="btn1">1</button>
+    <button id="btn2">2</button>
+    <button id="btn3">3</button>
+    <button id="btn4">4</button>
+    <button id="btn5">5</button>
+    <button id="btn6">6</button>
+    <button id="btn7">7</button>
+    <button id="btn8">8</button>
+    <button id="btn9">9</button>
+    <button id="btn10">10</button>
+    <ur id="xiongdi">
+        <li id="liulian">榴莲</li>
+        <input type="radio" name="gender" value="male">男
+        <input type="radio" name="gender" value="female">女
+        <li>臭豆腐</li>
+        <li>榴莲</li>
+    </ur>
+    <ul id="city">
+        <li id="wo">wo</li>
+        <li>shi</li>
+        <li>ci</li>
+        <li>ty</li>
+    </ul>
+    <ul id="phone">
+        <li>wo</li>
+        <li>shi</li>
+        <li>ph</li>
+        <li>one</li>
+    </ul>
+    <h4>粉丝数</h4>
+    <ol>
+        <li name="gender">刘德华</li>
+        <li name="gender">郭富城</li>
+        <li>黎明</li>
+    </ol>
+    <dl>
+        <dt>新浪微博</dt>
+        <dd>相关介绍</dd>
+        <dd>联系我们</dd>
+    </dl>
+    <input type="text" name="name" id="username" value="abasjkd">
+<body>
+</html>

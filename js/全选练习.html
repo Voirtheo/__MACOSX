@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        function chose(idStr,fun){
+            var checkedall = document.getElementById(idStr);
+            checkedall.onclick = fun;
+        }
+        window.onload = function(){
+            var changeState = document.getElementsByName("pe");
+            var quanxuan = document.getElementById("quanxuan"); 
+            chose("checkedAll",function(){
+                //遍历changeState
+                for(var i=0;i<changeState.length;i++){
+                    changeState[i].checked = true;
+                }
+                quanxuan.checked = true;
+            })
+            chose("checkedNone",function(){
+                for(var i=0;i<changeState.length;i++){
+                    changeState[i].checked = false;
+                }
+                quanxuan.checked = false;
+            })
+            chose("change",function(){
+                for(var i=0;i<changeState.length;i++){
+                    changeState[i].checked = !changeState[i].checked;
+                }
+                quanxuan.checked = !quanxuan.checked;
+            })
+            chose("submit",function(){
+                for(var i=0;i<changeState.length;i++){
+                    if(changeState[i].checked==1){
+                        alert(changeState[i].value);
+                    }
+                }
+            })
+            quanxuan.onclick = function(){
+                for(var i=0;i<changeState.length;i++){
+                    changeState[i].checked = this.checked;
+                }
+            }
+            var hold = 0;
+            for(var i=0;i<changeState.length;i++){
+                    changeState[i].onclick = function(){
+                        quanxuan.checked = true;
+                        for(var i=0;i<changeState.length;i++){
+                            if(!changeState[i].checked){
+                                quanxuan.checked = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+        }
+    </script>
+</head>
+<body>
+    <p>你爱好的运动是？</p>
+    <form method="POST" action="">
+        <input id="quanxuan" type="checkbox">全选/全不选<br>
+        <input type="checkbox" name="pe" value="football">足球
+        <input type="checkbox" name="pe" value="backetball">篮球
+        <input type="checkbox" name="pe" value="badminton">羽毛球
+        <input type="checkbox" name="pe" value="pingpong">乒乓球<br>
+        <input id="checkedAll" type="button" value="全选">
+        <input id="checkedNone" type="button" value="全不选">
+        <input id="change" type="button" value="反选">
+        <input id="submit" type="submit" value="提交">
+    </form>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            float: right;
+            /* 可使用float来使元素脱离文档流，脱离之后它下面的元素回立即向上浮动，元素浮动以后会尽量向左上或者右上浮动
+            直到遇到父元素的边框或者其他的浮动元素
+            如果浮动元素上边是一个没浮动的块元素，则浮动元素不会超过块元素
+            浮动的元素不会超过它上边的兄弟元素，最多一边齐*/
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            float: right;
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <!-- 文档流处在网页的最底层呢，表示的是一个页面中的位置，我们创建的元素默认在文档流中 
+    块元素在文档流中独占一行，默认自上向下排列，高度默认被内容撑开
+    内联元素在文档流中只占自身的大小，默认从左向右排列，自动换行；内联宽高都默认被内容撑开-->
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<template>
+  <view class="cart">
+    <!-- <view @tap="closeList()" class="cart-control">
+    </view> -->
+    <view class="cart-content">
+            <block wx:if="{{flag &&  chooseList.length !=0 }}">
+              <view  class="foodList">
+                <view class="cat danddian">        
+                    <view class="title bg-ddd" style="border-left:solid 3px {{colorList[0]}}">
+                      单品
+                    <text @tap="clearCat()" class="clearCart"><text class="iconfont icon-shanchu"></text>清空购物车</text>
+                    </view>
+                     <block wx:for="{{chooseList}}" wx:key="index" wx:if="{{item.cat !=2}}">
+                        <view class="foodItem" >
+                            <text class="name">{{item.name}}</text>
+                            <view class="buybuybuy">
+                              <text class="iconfont icon-renminbi2"></text>{{item.price * item.sum}}
+                              <view class="inline">
+                                <view class="inline iconfont icon-jian1" @tap="subtract({{index}},{{item}})" ></view>
+                                <text>{{item.sum}}</text>
+                                <view class="inline iconfont icon-webicon310" @tap="plus({{index}},{{item}})"></view>
+                              </view>
+                            </view>
+                        </view>
+                      </block>
+                  
+                    <view class="title bg-ddd" style="margin-top:20px;border-left:solid 3px {{colorList[1]}}">
+                      套餐
+                    </view>
+                    <block wx:for="{{chooseList}}" wx:key="index" wx:if="{{item.cat == 2}}">
+                      <view class="foodItem" >
+                          <text class="name">{{item.name}}</text>
+                          <view class="buybuybuy">
+                            <text class="iconfont icon-renminbi2"></text>{{item.price * item.sum}}
+                            <view class="inline">
+                                <view class="inline iconfont icon-jian1" @tap="subtract({{index}},{{item}})" ></view>
+                                <text>{{item.sum}}</text>
+                                <view class="inline iconfont icon-webicon310" @tap="plus({{index}},{{item}})"></view>
+                              </view>
+                          </view>
+                      </view>
+                    </block>
+                </view>
+              </view>
+            </block>
+
+      <view class="submit">
+        <view @tap="showList()" class="cart-num">
+          <text class="sp iconfont icon-gouwuchekong size-xl"></text>
+          <text class="weui-badge badge-top">{{foodSummary}}</text>
+        </view>
+        <text class="iconfont icon-renminbi2 color-red size-xl"></text>
+        <text class="color-red size-xl">{{sumPrice}}</text>
+        <text class="sp size-xl color-ccc">|</text>
+        <text class="size-s">差<text class="size-s iconfont icon-renminbi2"></text>{{finite}}起送</text>
+        <text class="btn" @tap="account()">去结算</text>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import http from '../mixins/http'
+  import base from '../mixins/base'
+
+
+  export default class cart extends wepy.component {
+    mixins = [base, http]
+    props = {
+      flag: {
+        type: String,
+        default: false,
+        twoWay: true
+        },
+      chooseList:{
+          type: Object,
+          default: [],
+          twoWay: true
+      },
+      list:{
+        type: Object,
+        default: [],
+        twoWay: true
+      },
+      catList:{
+        type: Object,
+        default: [],
+        twoWay: true
+      },
+      dealList:{
+        type: Object,
+        default: [],
+        twoWay: true
+      },
+    }
+
+    data = {
+      cart:{
+        price:39
+      },
+      finiteStart:80,
+      // foodSummary:2,
+      colorList:['red','green'],
+      message:{
+        address:'西安软件园',
+        name:'兰正龙',
+        sex:'male',
+        tel:'0000000000',
+        cantee:'一食堂'
+      },
+    }
+
+    computed = {
+      //是否有单品加入购物车
+      cartDefaultLen(){
+        let len = this.chooseList.filter((item)=>{
+          return item.cat != 2 ;
+        }).length
+        return len > 0
+      },
+       defaultList(){       
+          var data = [{
+            name:"热推辣货",
+            id:'1',
+            food:[{
+              'name':'酸辣鳕鱼',
+              'id':'',
+              'price':20.5,
+              'sum':'3'
+            }]
+          },{
+            name:"套餐菜品",
+            id:'2',
+            food:[{
+              'name':'孕妇套餐',
+              'id':'',
+              'price':20.5,
+              'sum':'1'
+            }]
+          }]
+        return data ;
+      },
+      foodSummary(){
+        if(this.chooseList.length != 0 ){
+          let arr = [] ;
+          this.chooseList.map((item)=>{
+            arr.push(item.sum)
+          })
+          let sum = arr.reduce((result,item,index,arr) => {
+              return parseFloat(result)+parseFloat(item) 
+          })
+          return sum
+        }      
+        return "0"
+      },
+      sumPrice(){
+        if(this.chooseList.length != 0 ){
+          let arr = [] ;
+          this.chooseList.map((item)=>{
+            arr.push(item.price * item.sum)
+          })
+          let sum = arr.reduce((result,item,index,arr) => {
+              return parseFloat(result)+parseFloat(item) 
+          })
+          return sum
+        }      
+        return "0"
+      },
+      finite(){
+        return  this.finiteStart - this.sumPrice < 0 ? 0 :this.finiteStart - this.sumPrice ;
+      },
+    }
+
+    methods = {
+      showList(){
+        this.flag = !this.flag;
+      },
+      closeList(){
+        this.flag = false;
+      },
+      clearCat(){
+        this.chooseList = [] ;
+        this.$emit('clear');        
+      },
+            //减少商品
+      subtract(index,item){
+       console.log("cartsubtract click","item=>",item,"foodList=>",this.list,"chooseList=>",this.chooseList)
+
+        const i = this.findElem(this.chooseList,"id",item.id);
+        const j = this.findElem(this.list,"id",item.id);
+
+        console.log("listj",j,"choose",i)
+
+        if(i > -1 && j > -1){
+              if(this.list[j].sum <= 1){
+                this.list[j].sum = 0;
+                this.chooseList.splice(i,1);
+              }else{
+                console.log("cart!<=1")
+
+                this.list[j].sum -- ;
+                this.chooseList[i].sum -- ;
+              }     
+        }
+
+
+
+      },
+      //增加商品
+      plus(index,item){
+        item.price = parseFloat(item.price);
+        item.sum = 1 ;
+        var i = this.findElem(this.chooseList,"id",item.id);
+        var j = this.findElem(this.list,"id",item.id);
+        if(j >= 0){
+          this.list[j].sum ++
+        }
+        if(i < 0){
+          this.chooseList.push(item);
+        }else{
+          this.chooseList[i].sum ++ ;
+        }
+      },
+      account(){
+        if(this.chooseList.length == 0){
+          wx.showToast({
+            title: '请至少选择一样菜品',
+            icon: 'none',
+            duration: 2000
+          })
+        }else if(this.finite > 0){
+          wx.showToast({
+            title: '购物菜单未满足起送价，请再挑选下单',
+            icon: 'none',
+            duration: 2000
+          })
+        }else{
+          var message = JSON.stringify(this.message)
+          var choosedTime = JSON.stringify("立即送出") ;
+          var sumPrice = JSON.stringify(this.sumPrice) ;
+          var foodList = JSON.stringify(this.chooseList);
+          var list = JSON.stringify(this.list);
+
+          wx.navigateTo({
+              url: "/pages/submit?message=" + message + "&choosedTime=" + choosedTime +"&sumPrice=" + sumPrice + "&foodList=" + foodList +  "&list=" + list
+          })
+          }
+        }
+    }
+}
+</script>
+
+<style type="less" scoped>
+.inline{
+  display: inline;
+}
+.cart{
+  width:100%;
+  font-size:16px;
+  background-color: #fff;
+}
+.cart .cart-control{
+  position: fixed;
+  background-color: transparent;
+  height:100vh;
+  bottom:0px;
+  width:100%;
+  z-index:1;
+}
+.cart .cart-content{
+  background-color: #fff;
+  position: fixed;
+  bottom:0px;
+  width:100%; 
+  z-index:3;
+}
+.foodList .title{
+  padding-left:5px;
+  height: 30px;
+  line-height: 30px;
+}
+.clearCart{
+  float: right;
+  margin-right: 8px;
+}
+.foodItem{
+  margin:8px;
+}
+.foodItem .name{
+
+}
+.foodItem .buybuybuy{
+  float:right;
+}
+.foodItem .buybuybuy .icon-jian1,.icon-webicon310{
+  background-color: red;
+  color:#fff;
+  border-radius:50%;
+  margin:0 5px;
+}
+.submit{
+  height:50px;
+  line-height:50px;
+}
+.btn{
+  display:inline-block;
+  background-color:#ff8eb3;
+  color:#fff;
+  width:100px;
+  height:50px;
+  float: right;
+  text-align:center;
+}
+.sp{
+  margin:0 5px;
+}
+.badge-top{
+    position: absolute;
+    font-size:10px !important;
+    top: 0.5em;
+    left: 2em;
+}
+.cart-num{
+  position:relative;
+  display:inline-block;
+  margin-right:10px;
+  margin-left:5px;
+}
+</style>

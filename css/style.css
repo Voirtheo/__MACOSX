@@ -1,0 +1,18 @@
+#p1{
+    font-size: 100px;
+    color:aquamarine;
+}
+.p2{
+    font-size: 50px;
+    color: cadetblue;
+}
+
+#p1,.p2{
+    background-color:cornflowerblue;
+}
+#p123 span{
+    background-color: beige;
+}
+div span{
+    font-size: 200px;
+}

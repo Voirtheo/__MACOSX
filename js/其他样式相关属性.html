@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style type="text/css">
+            #box1{
+                padding: 10px;
+                width: 200px;
+                height: 200px;
+                background-color: cadetblue;
+                border: rgb(30, 156, 61) solid 10px;
+            }
+        </style>
+        <script type="text/javascript">
+            window.onload = function(){
+            //点击按钮修改box1大小
+            var box1 = document.getElementById("box1");
+            var btn1 = document.getElementById("btn1");
+            btn1.onclick = function(){
+                //以下属性返回值不带px，只是一个数字，可以直接进行计算
+                //这些属性都是只读的不可修改
+                alert(box1.clientHeight);//返回内容区+内边距width同理
+                alert(box1.offsetWidth);//获取元素整个的宽度和高度，包括内容区、边框和内边距
+                var op = box1.offsetParent//获取当前元素的定位父元素,会获取到当前元素最近的开启了定位的祖先元素
+                //如果所有祖先元素都没有开启定位，则返回body
+                debugger;
+                alert(op.id);
+                alert(box1.offsetleft);
+            }
+            }
+        </script>
+    </head>
+    <body>
+        <button id="btn1">点我一下</button>
+        <div id="box2" style="position: relative;">
+            <div id="box1"></div>
+        </div>
+    </body>
+    </html>

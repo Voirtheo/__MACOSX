@@ -1,0 +1,26 @@
+/* start.wxss */
+
+.btn1{
+  width: 80%;
+  /* margin: auto 0; */
+  margin-top: 20rpx;
+  background-color: rgb(238, 238, 157);
+  color: white;
+  border-radius: 98rpx; 
+}
+.btn1::after {
+  border:0;
+  border-radius: 98rpx;
+}
+.btn2{
+  width: 80%;
+  margin-top: 20rpx;
+  /* margin: 0 auto; */
+  background-color: rgb(238, 238, 157);
+  color: white;
+  border-radius: 98rpx;  
+}
+.btn2::after {
+  border:0;
+  border-radius: 98rpx;
+}

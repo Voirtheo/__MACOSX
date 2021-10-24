@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内联元素盒模型</title>
+    <style>
+        .s1{
+            /* 内联元素不能设置宽高,但设置float脱离文档流之后就变成了块元素 */
+            width: 100px;
+            height: 100px;
+            /* padding-left: 100px;
+            padding-right: 100px; */
+            /* 左右内边距可以影响布局，垂直方向不影响 */
+            padding: 100px 100px 100px 100px;
+            background-color: rgb(119, 0, 255);
+            /* 边框不影响页面布局 */
+            border-style: solid;
+            border-width: 10px;
+            border-color: brown;
+            margin: 100px 100px 100px 100px;
+        }
+        .s2{
+            /* 内联元素不支持垂直外边距 */
+            /* 内联元素支持水平外边距 */
+            margin-left: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <span class="s1">我是一个span</span>
+    <span class="s2">我是一个span</span>
+    <div class="s3">我是一个div</div>
+</body>
+</html>

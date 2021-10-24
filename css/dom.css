@@ -1,0 +1,14 @@
+div{
+    text-align: center;
+    margin: 0 auto;
+    width: 300px;
+    /* background-color:blanchedalmond; */
+}
+.employeeTable table{
+    border: 1px solid black;
+    /* width: 400px; */
+}
+#formDiv{
+    /* background-color: aquamarine; */
+    width: 200px;
+}

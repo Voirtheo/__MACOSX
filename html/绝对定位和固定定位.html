@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /* 开启绝对定位会脱离文档流
+            相对定位是相对自身
+            绝对定位使相对于离他最近的祖先元素进行定位（而固定定位则是与祖先元素无关的定位，永远相对浏览器，他会跟滚条滚）
+            如果没有祖先元素开启相对定位，则相对于浏览器窗口定位（即需要在父元素中position:relative；）
+            会使元素提升一个层级
+            会将内联改成块 */
+        }
+        .box3{
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

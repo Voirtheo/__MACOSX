@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var str = `hello
+world`;//换行
+        console.log(str)
+        //占位符
+        var zhanwei = `欢迎${str}新同学`;
+        console.log(zhanwei);
+        //默认参数可以直接赋值
+        function getName(name = "张三"){
+            console.log(name);
+        }
+        getName();
+        //扩展运算符
+        let obj1 = {a:1 , b:2};
+        //对象拷贝
+        let obj2 = {...obj1};//给obj2拷贝obj1
+        obj2.a = 3;
+        console.log(obj2);
+        //对象合并
+        let together = {...{a:1,b:2}, ...{c:3,d:4}};
+        console.log(together);
+        //数组的前拷贝和合并->跟对象一样
+        let data = [
+            {id:1,title:"羊肉串"},
+            {id:2,title:"猪肉串"},
+            {id:3,title:"牛肉串"}
+        ];
+        let newData = [
+            {id:4,title:"可乐"},
+            {id:5,title:"雪碧"},
+            {id:6,title:"橙汁"}
+        ];
+        data.push(...newData);
+        console.log(data);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

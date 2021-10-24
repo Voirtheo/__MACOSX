@@ -1,0 +1,94 @@
+<template>
+<view class="sendTime" wx:if="{{flag}}">
+   <scroll-view style="height: 155px;" scroll-y>
+    <block wx:for="{{list}}" wx:key="{{item}}">
+      <view @tap="choose({{item}})" class="time-item {{item == currentTime ? 'checked':''}}">
+        {{item}}<text class="iconfont {{item == currentTime ? 'icon-xuanze_green':'icon-xuanze'}}"></text>
+      </view>
+    </block>
+  </scroll-view> 
+  <text class="submit-btn" @tap="submitTime()">确定</text>
+</view>
+
+
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class cart extends wepy.component {
+    props = {
+      flag: {
+        type: String,
+        default: false,
+        twoWay: true
+    },
+    currentTime:{
+      type: String,
+      default: '立即送出',
+      twoWay: true
+    }
+    }
+
+    data = {
+    }
+
+    computed = {
+      list(){
+        let defaultTime = [];
+          defaultTime[0] = '立即送出';
+          for(let i = 1 ; i <=3 ; i ++){
+            if(new Date().getHours()+i >= 24){
+              defaultTime[i] = '次日' + (new Date().getHours()+i -16) + ':00';
+            }else{
+              defaultTime[i] = new Date().getHours()+i + ':00';
+            }
+          }
+        return defaultTime;
+      }
+    }
+
+    methods = {
+      choose(time){
+        this.currentTime = time ;
+      },
+      submitTime(){
+        this.flag = false
+      },
+      timeFormate(d){
+        var time=d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+        return time;
+      }
+    };
+
+
+  }
+</script>
+
+<style type="less" scoped>
+.sendTime{
+  position: fixed ;
+  bottom: 0;
+  height: 200px;
+  width:100%;
+  background-color:#fff;
+}
+.iconfont{
+  float:right;
+  margin-right:10px;
+}
+.time-item{
+  margin:10px;
+}
+.checked{
+  color: green;
+}
+.submit-btn{
+  display:block;
+  height: 45px;
+  border-top:1px solid #ccc;
+  line-height:45px;
+  width:100%;
+  text-align:center;
+}
+</style>

@@ -1,0 +1,57 @@
+<!-- <form></form>定义表单域
+属性：
+action 接收表单的url地址
+method 属性为get/post用于设置表单数据的提交方式
+name   指定表单名称
+表单元素：
+<input type="属性值" /> 收集用户信息
+type设置不同的属性值指定不同控件（自行百度） 
+ name 定义input元素的名称
+value 规定input元素的值  name和value给后台用的
+checked 打开页面时默认选中
+maxlength 规定输入字段中的字符的最大长度
+表单标签：
+label  点击文字也算点击文本框，比如点男就能选中男的那个框 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="success.html" method="GET" name="name1">
+        <!-- name为表单元素的名字，只要表单要提交去服务器，就必须写name -->
+        <label for="text">用户名：</label><input type="text" name="username" id="text"><br>
+        <label for="pwd">密码：</label><input type="password" name="pwd" id="pwd"><br>
+        <!-- radio为单选按钮，实现多选一，但必须给按钮赋同一个name -->
+        性别：<label for="nan">男</label><input type="radio" name="sex" id="nan"> <label for="nv">女</label><input type="radio" name="sex" id="nv"><br>
+        <!-- checkbox为复选框，可实现多选，也要同name -->
+        性别：男<input type="checkbox"> 女<input type="checkbox"><br>
+        <!-- 当name设置为相同时表示为同一列表 -->
+        <input type="radio" name="gender" value="male">男
+        <input type="radio" name="gender" value="female">女<br>
+        <!-- submit将表单提交给服务器 -->
+        你喜欢的明星
+        <select name="star" id="mx">
+            <optgroup label="女明星">
+            <!-- opt用于对选项进行分组 -->
+                <option value="fbb">范冰冰</option>
+                <option value="fbb">赵本山</option>
+                <option value="fbb" selected="selected">林心如</option>
+            <!-- selected为默认选中 -->
+            </optgroup>
+            <optgroup label="男明星">
+                <option value="fbb">范冰冰</option>
+                <option value="fbb">赵本山</option>
+            </optgroup>
+        </select><br>
+        自我介绍<br>
+        <textarea name="info" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="免费注册">
+        <input type="reset">
+    </form>
+</body>
+</html>

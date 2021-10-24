@@ -1,0 +1,130 @@
+
+<template>
+    <view class="address">
+        <view class="weui-cells weui-cells_form">
+            <view class="weui-cell ">
+                <view class="weui-cell__bd">联系人：</view>
+                <view class="weui-cell__rt">
+                    <input placeholder="请填写收货地址" value="{{message.name}}" bindinput="userNameInput"/>
+                </view>
+            </view>
+             <view class="weui-cell ">
+                <view class="weui-cell__bd">性别：</view>
+                <view class="weui-cell__rt">
+                  <radio-group class="radio-group" bindchange="radioChange" value="{{message.sex}}">
+                    <label class="radio" >
+                      <radio value="male" checked="{{message.sex == 'male'}} "/>小哥哥
+                      <radio value="female" checked="{{message.sex  == 'female'}}"/>小姐姐
+                    </label>
+                  </radio-group>
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">手机号：</view>
+                <view class="weui-cell__rt">
+                    <input   placeholder="请填写手机号" value="{{message.tel}}" bindinput="userPhoneInput" />
+                </view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">收货地址：</view>
+                <view class="weui-cell__rt">
+                    <input placeholder="请填写收货地址" value="{{message.address}}" bindinput="userAddressInput" />
+                </view>
+            </view>
+        </view>
+        <button @tap="submit()">保存地址</button>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class address extends wepy.page {
+    mixins = []
+    config = {
+      navigationBarTitleText: '新增收货地址'
+    }
+    components = {
+
+    }
+
+    mixins = []
+
+    data = {
+      message:{
+        address:'西安软件园',
+        name:'兰正龙',
+        sex:'male',
+        tel:'0000000000',
+        cantee:'一食堂'
+      },
+      foodList:[],
+      sumPrice:'',
+      choosedTime:''
+
+    }
+
+    computed = {
+
+    }
+
+    methods = {
+
+    }
+
+    events = {
+
+    }
+
+    onLoad(options) {
+        this.message = JSON.parse(options.message);
+        this.foodList = JSON.parse(options.foodList);
+        this.sumPrice = JSON.parse(options.sumPrice);
+        this.choosedTime = JSON.parse(options.choosedTime)
+    }
+    onReady() {
+      this.initPage()
+    }
+    initPage(){
+
+    }
+    userNameInput(e){
+        this.message.name = e.detail.value
+    }
+    userAddressInput(e){
+        this.message.address = e.detail.value
+
+    }
+    userPhoneInput(e){
+        this.message.tel = e.detail.value
+    }
+    radioChange(e) {
+      console.log('radio发生change事件，携带value值为：', e.detail.value)
+        this.message.sex = e.detail.value
+
+    }
+    submit(){
+      var message = JSON.stringify(this.message);
+      var choosedTime = JSON.stringify(this.choosedTime) ;
+      var foodList = JSON.stringify(this.foodList) ;
+      var sumPrice = JSON.stringify(this.sumPrice) ;
+
+      wx.navigateTo({
+          url: "/pages/submit?message=" +  message + "&choosedTime=" + choosedTime +"&sumPrice=" + sumPrice + "&foodList=" + foodList 
+      })
+    }
+
+  }
+</script>
+<style lang="less">
+button{
+  background-color:#ff8eb3;
+  color:#fff;
+  width:80%;
+  margin-top:50px;
+}
+input{
+    text-align: right;
+}
+</style>
+

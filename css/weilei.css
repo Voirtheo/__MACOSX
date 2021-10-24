@@ -1,0 +1,7 @@
+a:link{
+    color:crimson;
+}
+a:visited {color: #00FF00} 
+a:hover{
+    color: rgb(139, 0, 42);
+}
