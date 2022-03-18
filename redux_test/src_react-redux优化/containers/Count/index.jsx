@@ -1,6 +1,6 @@
 import CountUI from '../../components/Count'
 import { connect } from 'react-redux'
-import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/actions/count_action'
+import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/count_action'
 
 
 
