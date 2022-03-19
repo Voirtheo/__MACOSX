@@ -3,10 +3,6 @@ import React, { Component } from 'react'
 export default class Count extends Component {
     state = { carName: '123123' }
 
-    componentDidMount() {
-       
-
-    }
     increment = () => {
         const { value } = this.selectNumber
         this.props.incre(value*1)
@@ -29,7 +25,8 @@ export default class Count extends Component {
         console.log('UI组件接收的props',this.props)
         return (
             <div>
-                <h1>当前求和为:{this.props.count}</h1>&nbsp;
+                <h1>我是count组件</h1>
+                <h2>当前求和为:{this.props.count}，下方组件总人数为{this.props.numberOfPeople}</h2>&nbsp;
                 <select ref={c => this.selectNumber = c}>
                     <option value='1'>1</option>
                     <option value='2'>2</option>
@@ -39,6 +36,7 @@ export default class Count extends Component {
                 <button onClick={this.decrement}>-</button>&nbsp;
                 <button onClick={this.incrementIfOdd}>当前求和为奇数再加</button>&nbsp;
                 <button onClick={this.incrementAsync}>异步加</button>&nbsp;
+                <hr />
             </div>
         )
     }

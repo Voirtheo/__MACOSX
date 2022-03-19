@@ -5,7 +5,10 @@ import { createIncrementAction, createDecrementAction, createIncrementAsyncActio
 
 
 export default connect(
-    state => ({ count: state }),
+    state => ({ 
+        count: state.sum,
+        numberOfPeople:state.people.length
+     }),
     {
         incre: createIncrementAction,
         decre: createDecrementAction,
