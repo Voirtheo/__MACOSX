@@ -37,21 +37,22 @@ function Headline() {
     return (
         <div className="headline">
             <div className="headline__logo"></div>
-            <div className="headline__slider"></div>
-            <Slider {...settings}>
-                {
-                    dataSource.map((item, index) => {
-                        return (
-                            <a key={index} className='headline__sliderInner' href={item.url}>
-                                <div className="headline__sliderTitle">{item.title}</div>
-                                <div className="headline__sliderImgWrapper">
-                                    <img className="headline__sliderImg" src={item.pic} />
-                                </div>
-                            </a>
-                        )
-                    })
-                }
-            </Slider>
+            <div className="headline__slider">
+                <Slider {...settings}>
+                    {
+                        dataSource.map((item, index) => {
+                            return (
+                                <a key={index} className='headline__sliderInner' href={item.url}>
+                                    <div className="headline__sliderTitle">{item.title}</div>
+                                    <div className="headline__sliderImgWrapper">
+                                        <img className="headline__sliderImg" src={item.pic} />
+                                    </div>
+                                </a>
+                            )
+                        })
+                    }
+                </Slider>
+            </div>
         </div>
     )
 }

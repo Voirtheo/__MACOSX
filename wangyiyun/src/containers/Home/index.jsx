@@ -1,5 +1,6 @@
 import React from "react";
 import Category from "./Category";
+import Discount from "./Discount";
 import Headline from "./Headline";
 
 
@@ -9,6 +10,7 @@ function Home(){
         <div>
             <Category />
             <Headline />
+            <Discount />
         </div>
     )
 }
