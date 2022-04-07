@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LikeItem from "../LikeItem";
+import Loading from "../../../components/Loading";
 
 
 const dataSource = [
@@ -67,19 +68,60 @@ const dataSource = [
 
 
 function LikeList() {
-    const data= dataSource
+    const [loadTimes, setLoadTimes] = useState(1)
+    const [data, setData] = useState(dataSource)
+    const [removeListener, setRemove] = useState(false)
+    const myRef = useRef()
+
+
+    const handleScroll = () => {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        const screenHeight = document.documentElement.clientHeight
+        const likeListTop = myRef.current.offsetTop
+        const likeListHeight = myRef.current.offsetHeight
+        if (scrollTop >= likeListHeight + likeListTop - screenHeight) {
+            setTimeout(() => {
+                setData(data.concat(dataSource))
+                setLoadTimes(loadTimes + 1)
+                console.log(data,'tiems=',loadTimes)
+            }, 1000)
+        }
+    }
+
+
+    useEffect(() => {
+        document.addEventListener("scroll", handleScroll)
+        if (loadTimes >= 3 && !removeListener) {
+            document.removeEventListener("scroll", handleScroll)
+            setRemove(true)
+        }
+        return () => {
+            if(!removeListener){
+                document.removeEventListener("scroll", handleScroll)
+            }
+        }
+    }, data,loadTimes)
+
+
     return (
-        <div className="likeList">
+        <div className="likeList" ref={myRef}>
             <div className="likeList__header">猜你喜欢</div>
             <div className="likeList__list">
-                { 
-                    data.map((item)=>{
+                {
+                    data.map((item) => {
                         return <LikeItem key={item.id} data={item} />
                     })
                 }
             </div>
+            {
+                loadTimes < 3 ? <Loading /> :
+                    (
+                        <a className="likeList__viemall">查看更多</a>
+                    )
+            }
         </div>
     )
 }
+
 
 export default LikeList;
